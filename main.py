@@ -16,7 +16,8 @@ class Video(Resource):
         return videos[video_id]
     def put(self, video_id):
         args = video_put_args.parse_args()
-        return {video_id: args}
+        videos[video_id] = args
+        return videos[video_id], 201  # that is status code (200 is representing ok)
 
 
 api.add_resource(Video, "/video/<int:video_id>")
